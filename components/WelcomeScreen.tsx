@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 interface WelcomeScreenProps {
   onQuickPrompt: (prompt: string) => void;
@@ -14,19 +15,14 @@ const suggestions = [
 export default function WelcomeScreen({ onQuickPrompt }: WelcomeScreenProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 py-12 animate-fade-in">
-      {/* Logo */}
+      {/* شعار مخصص */}
       <div className="relative mb-8">
-        <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 flex items-center justify-center shadow-2xl shadow-blue-500/30 animate-pulse-glow">
-          <svg className="w-12 h-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
-            <path d="M12 2a10 10 0 0 1 10 10h-10V2z"/>
-            <circle cx="12" cy="12" r="3" fill="currentColor"/>
-          </svg>
+        <div className="w-24 h-24 rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/30">
+          <Image src="/icon-192.png" alt="ShadMini AI Logo" width={96} height={96} className="object-cover" />
         </div>
         <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-green-400 border-4 border-white dark:border-gray-900 shadow-lg"></div>
       </div>
 
-      {/* Title */}
       <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 mb-2">
         مرحباً بك في ShadMini AI
       </h2>
@@ -35,7 +31,6 @@ export default function WelcomeScreen({ onQuickPrompt }: WelcomeScreenProps) {
         اختر نموذجاً وابدأ المحادثة.
       </p>
 
-      {/* Suggestions Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
         {suggestions.map((s, i) => (
           <button

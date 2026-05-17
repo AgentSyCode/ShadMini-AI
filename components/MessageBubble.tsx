@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface MessageBubbleProps {
   role: 'user' | 'assistant';
@@ -22,24 +23,17 @@ export default function MessageBubble({ role, content, isStreaming }: MessageBub
 
   return (
     <div className={`flex gap-3 mb-6 animate-fade-in ${isUser ? 'justify-end' : 'justify-start'}`}>
-      {/* Avatar for assistant */}
+      {/* أفاتار المساعد - صورة مخصصة */}
       {!isUser && (
         <div className="flex-shrink-0 mt-1">
-          <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M12 2a10 10 0 1 0 10 10H12V2z"/>
-              <path d="M12 2a10 10 0 0 1 10 10h-10V2z"/>
-            </svg>
+          <div className="w-9 h-9 rounded-2xl overflow-hidden shadow-lg shadow-blue-500/20">
+            <Image src="/icon-512.png" alt="ShadMini AI" width={36} height={36} className="object-cover" />
           </div>
         </div>
       )}
 
-      {/* Bubble */}
-      <div className={`max-w-[80%] md:max-w-[70%] ${
-        isUser
-          ? 'order-1'
-          : ''
-      }`}>
+      {/* فقاعة الرسالة */}
+      <div className={`max-w-[80%] md:max-w-[70%]`}>
         <div className={`px-5 py-3.5 rounded-2xl ${
           isUser
             ? 'bg-gradient-to-l from-blue-500 to-blue-600 text-white shadow-xl shadow-blue-500/20 rounded-tr-sm'
@@ -66,13 +60,9 @@ export default function MessageBubble({ role, content, isStreaming }: MessageBub
           )}
         </div>
 
-        {/* Action buttons for assistant */}
         {!isUser && !isStreaming && (
           <div className="flex gap-3 mt-2 px-2">
-            <button
-              onClick={handleCopy}
-              className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-            >
+            <button onClick={handleCopy} className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
               {copied ? (
                 <>
                   <svg className="w-3.5 h-3.5 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -101,9 +91,9 @@ export default function MessageBubble({ role, content, isStreaming }: MessageBub
         )}
       </div>
 
-      {/* Avatar for user */}
+      {/* أفاتار المستخدم */}
       {isUser && (
-        <div className="flex-shrink-0 mt-1 order-2">
+        <div className="flex-shrink-0 mt-1">
           <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
             <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
