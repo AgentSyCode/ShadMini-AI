@@ -52,7 +52,7 @@ export default function Sidebar({
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
         }}
       >
-        {/* Header */}
+        {/* Header with close button for mobile */}
         <div className="flex items-center gap-3 px-5 py-4 border-b border-gray-200/50 dark:border-gray-700/50">
           <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
             <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -167,18 +167,6 @@ export default function Sidebar({
           <ThemeToggle />
         </div>
       </aside>
-
-      {/* Mobile toggle button */}
-      <button
-        onClick={onToggle}
-        className="md:hidden fixed top-3 right-3 z-30 w-11 h-11 flex items-center justify-center rounded-2xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-lg border border-white/50 dark:border-gray-700/50 shadow-xl hover:shadow-2xl transition-all duration-200"
-      >
-        <svg className="w-5 h-5 text-gray-700 dark:text-gray-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-      </button>
     </>
   );
 }

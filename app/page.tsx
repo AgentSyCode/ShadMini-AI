@@ -16,6 +16,8 @@ export default function Home() {
   ]);
   const [activeChatId, setActiveChatId] = useState<string | null>('1');
 
+  const handleToggleSidebar = () => setSidebarOpen(prev => !prev);
+
   const handleNewChat = () => {
     const newChat: ChatHistoryItem = {
       id: Date.now().toString(),
@@ -42,7 +44,7 @@ export default function Home() {
     <div className="flex h-screen overflow-hidden bg-[#f8fafc] dark:bg-[#0f172a]">
       <Sidebar
         isOpen={sidebarOpen}
-        onToggle={() => setSidebarOpen(!sidebarOpen)}
+        onToggle={handleToggleSidebar}
         chats={chats}
         activeChatId={activeChatId}
         onSelectChat={(id) => {
@@ -61,6 +63,7 @@ export default function Home() {
         <ChatArea
           selectedModel={selectedModel}
           onModelChange={setSelectedModel}
+          onToggleSidebar={handleToggleSidebar}
         />
       </main>
     </div>
